@@ -14,9 +14,9 @@
       --text-soft: rgba(247,243,237,.72);
       --text-faint: rgba(247,243,237,.34);
       --line: rgba(255,255,255,.08);
-      --accent: #d8b38d;
-      --accent-soft: rgba(216,179,141,.16);
-      --shadow: 0 34px 120px rgba(0,0,0,.56);
+      --accent: #ddb48a;
+      --accent-soft: rgba(221,180,138,.16);
+      --shadow: 0 36px 120px rgba(0,0,0,.58);
       --radius-xl: 40px;
       --radius-lg: 28px;
       --radius-pill: 999px;
@@ -31,9 +31,9 @@
       font-family: "Manrope", system-ui, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 12% 14%, rgba(186,94,47,.28), transparent 17%),
-        radial-gradient(circle at 18% 70%, rgba(125,58,26,.20), transparent 24%),
-        radial-gradient(circle at 86% 10%, rgba(188,210,255,.08), transparent 14%),
+        radial-gradient(circle at 10% 12%, rgba(186,94,47,.30), transparent 18%),
+        radial-gradient(circle at 15% 72%, rgba(125,58,26,.22), transparent 26%),
+        radial-gradient(circle at 86% 10%, rgba(188,210,255,.09), transparent 14%),
         linear-gradient(180deg, #1a120d 0%, #0b0908 34%, #050608 100%);
       overflow-x: hidden;
     }
@@ -44,23 +44,24 @@
       inset: 0;
       pointer-events: none;
       background:
-        linear-gradient(114deg, rgba(255,255,255,.06), transparent 14%, transparent 42%, rgba(228,151,84,.07) 56%, transparent 74%),
+        linear-gradient(114deg, rgba(255,255,255,.06), transparent 14%, transparent 42%, rgba(228,151,84,.08) 56%, transparent 74%),
         repeating-linear-gradient(to bottom, rgba(255,255,255,.006) 0, rgba(255,255,255,.006) 1px, transparent 1px, transparent 3px);
       mix-blend-mode: screen;
-      opacity: .68;
+      opacity: .7;
     }
 
-    .fire-wash {
+    .fire-room {
       position: fixed;
       inset: 0;
       pointer-events: none;
       background:
-        radial-gradient(circle at 7% 64%, rgba(255,155,84,.12), transparent 12%),
-        radial-gradient(circle at 11% 52%, rgba(255,108,41,.12), transparent 11%),
-        radial-gradient(circle at 16% 72%, rgba(165,68,28,.12), transparent 15%);
-      filter: blur(20px);
+        radial-gradient(circle at 7% 68%, rgba(255,194,124,.18), transparent 12%),
+        radial-gradient(circle at 9% 56%, rgba(255,122,46,.18), transparent 10%),
+        radial-gradient(circle at 14% 74%, rgba(173,72,28,.18), transparent 16%),
+        radial-gradient(circle at 22% 48%, rgba(255,149,70,.10), transparent 9%);
+      filter: blur(24px);
       mix-blend-mode: screen;
-      opacity: .9;
+      opacity: .95;
     }
 
     .signature {
@@ -104,8 +105,8 @@
       pointer-events: none;
       background:
         radial-gradient(circle at 10% 14%, rgba(255,255,255,.04), transparent 14%),
-        radial-gradient(circle at 84% 12%, rgba(216,179,141,.09), transparent 18%),
-        linear-gradient(118deg, rgba(255,255,255,.08), transparent 18%, transparent 42%, rgba(228,151,84,.06) 58%, transparent 76%);
+        radial-gradient(circle at 84% 12%, rgba(221,180,138,.09), transparent 18%),
+        linear-gradient(118deg, rgba(255,255,255,.09), transparent 18%, transparent 42%, rgba(228,151,84,.08) 58%, transparent 76%);
     }
 
     .glass::after {
@@ -114,18 +115,18 @@
       inset: -10% 52% -10% -14%;
       pointer-events: none;
       background:
-        radial-gradient(circle at 24% 74%, rgba(255,205,142,.18), transparent 12%),
-        radial-gradient(circle at 30% 50%, rgba(255,122,46,.18), transparent 10%),
-        radial-gradient(circle at 18% 60%, rgba(174,73,28,.18), transparent 14%);
+        radial-gradient(circle at 24% 74%, rgba(255,205,142,.20), transparent 12%),
+        radial-gradient(circle at 30% 50%, rgba(255,122,46,.22), transparent 10%),
+        radial-gradient(circle at 18% 60%, rgba(174,73,28,.22), transparent 14%);
       filter: blur(18px);
       mix-blend-mode: screen;
-      opacity: .95;
+      opacity: .98;
     }
 
     .hero {
       border-radius: var(--radius-xl);
       padding: 30px 28px 28px;
-      min-height: 560px;
+      min-height: 580px;
       display: grid;
       grid-template-columns: 1.02fr .98fr;
       gap: 18px;
@@ -146,7 +147,7 @@
       padding: 8px 12px;
       border-radius: var(--radius-pill);
       background: var(--accent-soft);
-      border: 1px solid rgba(216,179,141,.16);
+      border: 1px solid rgba(221,180,138,.16);
       color: var(--accent);
       font-size: 11px;
       letter-spacing: .14em;
@@ -188,12 +189,38 @@
 
     .hero-visual {
       position: relative;
-      min-height: 500px;
+      min-height: 520px;
     }
+
+    .flame-column {
+      position: absolute;
+      left: -4%;
+      top: 12%;
+      width: 34%;
+      height: 78%;
+      pointer-events: none;
+      filter: blur(.6px);
+    }
+
+    .flame, .flame::before, .flame::after {
+      position: absolute;
+      content: "";
+      display: block;
+      border-radius: 52% 48% 60% 40% / 34% 42% 58% 66%;
+      transform-origin: 50% 100%;
+      background: radial-gradient(circle at 50% 28%, rgba(255,236,182,.98), rgba(255,163,74,.82) 42%, rgba(179,72,24,.26) 86%, transparent 100%);
+      filter: blur(2px);
+    }
+
+    .flame::before { inset: 18% 20% 38% 20%; opacity: .84; filter: blur(1px); }
+    .flame::after { inset: 34% 30% 16% 30%; opacity: .52; filter: blur(6px); }
+    .f1 { width: 86px; height: 210px; left: 0; bottom: 84px; animation: flicker 4.8s ease-in-out infinite; }
+    .f2 { width: 122px; height: 286px; left: 48px; bottom: 24px; animation: flicker 4.1s ease-in-out -.9s infinite; }
+    .f3 { width: 76px; height: 176px; left: 128px; bottom: 74px; animation: flicker 4.6s ease-in-out -1.4s infinite; }
 
     .lens-wrap {
       position: absolute;
-      right: 2%;
+      right: 0;
       top: 50%;
       transform: translateY(-50%);
       width: min(46vw, 540px);
@@ -219,8 +246,8 @@
     .lens-halo {
       inset: -16%;
       background:
-        radial-gradient(circle at 26% 60%, rgba(255,132,66,.26), transparent 18%),
-        radial-gradient(circle at 20% 72%, rgba(255,206,146,.18), transparent 12%),
+        radial-gradient(circle at 26% 60%, rgba(255,132,66,.30), transparent 18%),
+        radial-gradient(circle at 20% 72%, rgba(255,206,146,.22), transparent 12%),
         radial-gradient(circle at 74% 16%, rgba(188,210,255,.10), transparent 16%),
         radial-gradient(circle at 50% 50%, rgba(255,255,255,.03), transparent 48%);
       filter: blur(28px);
@@ -230,14 +257,14 @@
     .lens-rim {
       background:
         radial-gradient(circle at 72% 14%, rgba(215,228,255,.18), transparent 14%),
-        radial-gradient(circle at 30% 60%, rgba(193,83,37,.28), transparent 18%),
-        radial-gradient(circle at 50% 50%, rgba(15,12,12,.54), rgba(7,8,11,.76) 42%, rgba(3,4,7,.92) 72%, rgba(1,1,3,.98) 100%);
+        radial-gradient(circle at 30% 60%, rgba(193,83,37,.32), transparent 18%),
+        radial-gradient(circle at 50% 50%, rgba(15,12,12,.50), rgba(7,8,11,.70) 42%, rgba(3,4,7,.88) 72%, rgba(1,1,3,.96) 100%);
       border: 1px solid rgba(255,255,255,.1);
       box-shadow:
         inset 0 0 40px rgba(255,255,255,.03),
-        inset 0 -28px 66px rgba(0,0,0,.42),
+        inset 0 -28px 66px rgba(0,0,0,.40),
         0 40px 98px rgba(0,0,0,.56);
-      opacity: .78;
+      opacity: .72;
     }
 
     .lens-rim::before,
@@ -259,50 +286,50 @@
       inset: 24%;
       background:
         radial-gradient(circle at 36% 36%, rgba(255,255,255,.14), transparent 18%),
-        radial-gradient(circle at 50% 50%, rgba(12,9,10,.72), rgba(5,5,7,.88) 82%);
+        radial-gradient(circle at 50% 50%, rgba(12,9,10,.68), rgba(5,5,7,.84) 82%);
       border: 1px solid rgba(255,255,255,.07);
       box-shadow: inset 0 8px 24px rgba(255,255,255,.02), inset 0 -18px 36px rgba(0,0,0,.44);
     }
 
     .lens-gloss {
       background:
-        linear-gradient(126deg, rgba(255,255,255,.25), transparent 16%, transparent 58%, rgba(205,145,96,.12) 78%, transparent 100%),
-        radial-gradient(circle at 22% 20%, rgba(255,255,255,.18), transparent 8%),
+        linear-gradient(126deg, rgba(255,255,255,.28), transparent 16%, transparent 58%, rgba(205,145,96,.14) 78%, transparent 100%),
+        radial-gradient(circle at 22% 20%, rgba(255,255,255,.20), transparent 8%),
         radial-gradient(circle at 82% 74%, rgba(182,136,94,.08), transparent 14%);
       mix-blend-mode: screen;
-      opacity: .74;
+      opacity: .78;
     }
 
     .lens-sheen {
       inset: -4% 40% -4% -12%;
       background:
-        linear-gradient(104deg, rgba(255,255,255,.20), rgba(255,255,255,.02) 22%, transparent 42%),
-        linear-gradient(112deg, rgba(244,156,86,.18), transparent 34%);
+        linear-gradient(104deg, rgba(255,255,255,.22), rgba(255,255,255,.02) 22%, transparent 42%),
+        linear-gradient(112deg, rgba(244,156,86,.20), transparent 34%);
       filter: blur(16px);
       mix-blend-mode: screen;
-      opacity: .82;
+      opacity: .86;
       border-radius: 999px;
     }
 
     .lens-fire {
       background:
-        radial-gradient(circle at 22% 64%, rgba(255,138,62,.26), transparent 10%),
-        radial-gradient(circle at 28% 54%, rgba(255,214,148,.14), transparent 4%),
-        radial-gradient(circle at 18% 60%, rgba(174,73,28,.18), transparent 14%);
+        radial-gradient(circle at 22% 64%, rgba(255,138,62,.30), transparent 10%),
+        radial-gradient(circle at 28% 54%, rgba(255,214,148,.16), transparent 4%),
+        radial-gradient(circle at 18% 60%, rgba(174,73,28,.20), transparent 14%);
       filter: blur(6px);
       mix-blend-mode: screen;
-      opacity: .96;
+      opacity: .98;
     }
 
     .lens-flame {
       inset: -2% 58% 18% -10%;
       background:
-        radial-gradient(ellipse at 36% 90%, rgba(255,214,154,.85), transparent 16%),
-        radial-gradient(ellipse at 44% 72%, rgba(255,138,62,.55), transparent 18%),
-        radial-gradient(ellipse at 30% 88%, rgba(171,70,26,.45), transparent 20%);
+        radial-gradient(ellipse at 36% 90%, rgba(255,214,154,.92), transparent 16%),
+        radial-gradient(ellipse at 44% 72%, rgba(255,138,62,.62), transparent 18%),
+        radial-gradient(ellipse at 30% 88%, rgba(171,70,26,.48), transparent 20%);
       filter: blur(16px);
       mix-blend-mode: screen;
-      opacity: .68;
+      opacity: .8;
       border-radius: 46% 54% 60% 40% / 38% 44% 56% 62%;
       transform: rotate(-8deg);
     }
@@ -393,7 +420,7 @@
       align-content: end;
       background:
         linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.014)),
-        radial-gradient(circle at 12% 20%, rgba(177,96,52,.20), transparent 18%),
+        radial-gradient(circle at 12% 20%, rgba(177,96,52,.24), transparent 18%),
         linear-gradient(180deg, rgba(28,18,13,.94), rgba(8,9,11,1));
     }
 
@@ -456,19 +483,27 @@
       align-content: center;
     }
 
+    @keyframes flicker {
+      0%, 100% { transform: translateY(0) scale(1) rotate(-2deg); opacity: .78; }
+      25% { transform: translateY(-5px) scale(1.03) rotate(1deg); opacity: .9; }
+      50% { transform: translateY(2px) scale(.98) rotate(-1deg); opacity: .72; }
+      75% { transform: translateY(-8px) scale(1.05) rotate(2deg); opacity: .92; }
+    }
+
     @media (max-width: 980px) {
       .hero,
       .asym,
       .split { grid-template-columns: 1fr; }
       .hero { min-height: auto; }
-      .hero-visual { min-height: 420px; }
+      .hero-visual { min-height: 440px; }
+      .flame-column { left: 0; top: 6%; width: 30%; height: 74%; }
       .lens-wrap { right: 50%; transform: translate(50%, -50%); width: min(82vw, 460px); }
       .quote-plate { left: 50%; transform: translateX(-50%); width: min(320px, 84vw); }
     }
   </style>
 </head>
 <body>
-  <div class="fire-wash"></div>
+  <div class="fire-room"></div>
   <div class="signature">@parchaipodusham</div>
   <div class="shell">
     <section class="hero glass">
@@ -487,6 +522,11 @@
       </div>
 
       <div class="hero-visual">
+        <div class="flame-column" aria-hidden="true">
+          <span class="flame f1"></span>
+          <span class="flame f2"></span>
+          <span class="flame f3"></span>
+        </div>
         <div class="lens-wrap">
           <div class="lens-halo"></div>
           <div class="lens-rim"></div>
