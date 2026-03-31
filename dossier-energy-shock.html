@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Смещение оптики — энергетический шок</title>
+  <meta name="description" content="Досье о том, кто богатеет на новом энергетическом шоке, а кто платит за него через бензин, еду и бюджетный стресс." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --text: #f7f3ed;
+      --text-soft: rgba(247,243,237,.72);
+      --text-faint: rgba(247,243,237,.34);
+      --line: rgba(255,255,255,.08);
+      --accent: #ddb48a;
+      --accent-soft: rgba(221,180,138,.14);
+      --hot: #e8793f;
+      --shadow: 0 36px 120px rgba(0,0,0,.58);
+      --radius-xl: 40px;
+      --radius-lg: 28px;
+      --radius-pill: 999px;
+      --max: 1220px;
+      --ease: cubic-bezier(.22,1,.36,1);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      font-family: "Manrope", system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% 12%, rgba(186,94,47,.26), transparent 18%),
+        radial-gradient(circle at 14% 76%, rgba(125,58,26,.20), transparent 24%),
+        radial-gradient(circle at 86% 12%, rgba(188,210,255,.08), transparent 14%),
+        linear-gradient(180deg, #1a120d 0%, #0b0908 34%, #050608 100%);
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(114deg, rgba(255,255,255,.06), transparent 14%, transparent 42%, rgba(228,151,84,.08) 56%, transparent 74%),
+        repeating-linear-gradient(to bottom, rgba(255,255,255,.006) 0, rgba(255,255,255,.006) 1px, transparent 1px, transparent 3px);
+      mix-blend-mode: screen;
+      opacity: .7;
+    }
+
+    .fire-room {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 7% 68%, rgba(255,194,124,.18), transparent 12%),
+        radial-gradient(circle at 9% 56%, rgba(255,122,46,.18), transparent 10%),
+        radial-gradient(circle at 14% 74%, rgba(173,72,28,.18), transparent 16%),
+        radial-gradient(circle at 22% 48%, rgba(255,149,70,.10), transparent 9%);
+      filter: blur(24px);
+      mix-blend-mode: screen;
+      opacity: .95;
+    }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px;
+    }
+
+    .glass {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.012)),
+        linear-gradient(180deg, rgba(24,17,13,.88), rgba(8,9,12,.98));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: var(--radius-xl);
+    }
+    .glass::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 10% 14%, rgba(255,255,255,.04), transparent 14%),
+        radial-gradient(circle at 84% 12%, rgba(221,180,138,.09), transparent 18%),
+        linear-gradient(118deg, rgba(255,255,255,.09), transparent 18%, transparent 42%, rgba(228,151,84,.08) 58%, transparent 76%);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 8px 12px;
+      border-radius: var(--radius-pill);
+      background: var(--accent-soft);
+      border: 1px solid rgba(221,180,138,.16);
+      color: var(--accent);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      min-height: 620px;
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      gap: 20px;
+      padding: 30px 28px;
+      isolation: isolate;
+    }
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 0;
+      padding: 6px 0;
+    }
+    h1 {
+      margin: 18px 0 12px;
+      font-size: clamp(50px, 7vw, 92px);
+      line-height: .88;
+      letter-spacing: -.065em;
+      max-width: 7ch;
+    }
+    .hero-text {
+      max-width: 35ch;
+      color: var(--text-soft);
+      line-height: 1.65;
+      font-size: 15px;
+      margin: 0 0 18px;
+    }
+    .hero-meta, .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .chip {
+      padding: 8px 11px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.045);
+      color: var(--text-soft);
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 540px;
+    }
+    .lens-wrap {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: min(46vw, 540px);
+      aspect-ratio: 1/1;
+      max-width: 100%;
+    }
+    .noise-word, .focus-word {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-weight: 800;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .noise-word {
+      font-size: clamp(20px, 2.1vw, 28px);
+      color: rgba(247,243,237,.14);
+      filter: blur(2.8px);
+      opacity: .8;
+    }
+    .focus-word {
+      font-size: clamp(20px, 2.1vw, 28px);
+      color: rgba(247,243,237,.92);
+      opacity: 0;
+      transition: opacity .35s var(--ease), transform .35s var(--ease);
+      letter-spacing: .16em;
+    }
+    .lens-wrap:hover .focus-word,
+    .lens-wrap.is-active .focus-word { opacity: 1; transform: translate(-50%, -50%) scale(1.02); }
+
+    .lens-halo,.lens-rim,.lens-core,.lens-gloss,.lens-fire,.lens-blue,.lens-line,.lens-sheen,.lens-flame {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .lens-halo {
+      inset: -16%;
+      background:
+        radial-gradient(circle at 26% 60%, rgba(255,132,66,.30), transparent 18%),
+        radial-gradient(circle at 20% 72%, rgba(255,206,146,.22), transparent 12%),
+        radial-gradient(circle at 74% 16%, rgba(188,210,255,.10), transparent 16%),
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,.03), transparent 48%);
+      filter: blur(28px);
+      opacity: .98;
+    }
+    .lens-rim {
+      background:
+        radial-gradient(circle at 72% 14%, rgba(215,228,255,.18), transparent 14%),
+        radial-gradient(circle at 30% 60%, rgba(193,83,37,.32), transparent 18%),
+        radial-gradient(circle at 50% 50%, rgba(15,12,12,.50), rgba(7,8,11,.70) 42%, rgba(3,4,7,.88) 72%, rgba(1,1,3,.96) 100%);
+      border: 1px solid rgba(255,255,255,.1);
+      box-shadow:
+        inset 0 0 40px rgba(255,255,255,.03),
+        inset 0 -28px 66px rgba(0,0,0,.40),
+        0 40px 98px rgba(0,0,0,.56);
+      opacity: .72;
+    }
+    .lens-rim::before,.lens-rim::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      inset: 7%;
+      border: 1px solid rgba(255,255,255,.09);
+    }
+    .lens-rim::after {
+      inset: 16%;
+      border-color: rgba(255,255,255,.04);
+      transform: translate(11px,-7px);
+    }
+    .lens-core {
+      inset: 24%;
+      background:
+        radial-gradient(circle at 36% 36%, rgba(255,255,255,.14), transparent 18%),
+        radial-gradient(circle at 50% 50%, rgba(12,9,10,.68), rgba(5,5,7,.84) 82%);
+      border: 1px solid rgba(255,255,255,.07);
+      box-shadow: inset 0 8px 24px rgba(255,255,255,.02), inset 0 -18px 36px rgba(0,0,0,.44);
+    }
+    .lens-gloss {
+      background:
+        linear-gradient(126deg, rgba(255,255,255,.28), transparent 16%, transparent 58%, rgba(205,145,96,.14) 78%, transparent 100%),
+        radial-gradient(circle at 22% 20%, rgba(255,255,255,.20), transparent 8%),
+        radial-gradient(circle at 82% 74%, rgba(182,136,94,.08), transparent 14%);
+      mix-blend-mode: screen;
+      opacity: .78;
+    }
+    .lens-sheen {
+      inset: -4% 40% -4% -12%;
+      background:
+        linear-gradient(104deg, rgba(255,255,255,.22), rgba(255,255,255,.02) 22%, transparent 42%),
+        linear-gradient(112deg, rgba(244,156,86,.20), transparent 34%);
+      filter: blur(16px);
+      mix-blend-mode: screen;
+      opacity: .86;
+      border-radius: 999px;
+    }
+    .lens-fire {
+      background:
+        radial-gradient(circle at 22% 64%, rgba(255,138,62,.30), transparent 10%),
+        radial-gradient(circle at 28% 54%, rgba(255,214,148,.16), transparent 4%),
+        radial-gradient(circle at 18% 60%, rgba(174,73,28,.20), transparent 14%);
+      filter: blur(6px);
+      mix-blend-mode: screen;
+      opacity: .98;
+    }
+    .lens-flame {
+      inset: -2% 58% 18% -10%;
+      background:
+        radial-gradient(ellipse at 36% 90%, rgba(255,214,154,.92), transparent 16%),
+        radial-gradient(ellipse at 44% 72%, rgba(255,138,62,.62), transparent 18%),
+        radial-gradient(ellipse at 30% 88%, rgba(171,70,26,.48), transparent 20%);
+      filter: blur(16px);
+      mix-blend-mode: screen;
+      opacity: .8;
+      border-radius: 46% 54% 60% 40% / 38% 44% 56% 62%;
+      transform: rotate(-8deg);
+    }
+    .lens-blue {
+      background: radial-gradient(circle at 84% 18%, rgba(192,218,255,.11), transparent 14%);
+      filter: blur(10px);
+      mix-blend-mode: screen;
+      opacity: .86;
+    }
+    .lens-line {
+      top: 50%;
+      left: 50%;
+      width: 144%;
+      height: 1px;
+      transform: translate(-50%, -50%) rotate(-10deg);
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.11), rgba(201,162,122,.20), transparent);
+      opacity: .7;
+    }
+
+    .quote-plate {
+      position: absolute;
+      left: 0;
+      bottom: 8%;
+      width: min(340px, 72%);
+      padding: 18px 18px 16px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.018));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 24px 48px rgba(0,0,0,.34);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .quote-plate small {
+      display: block;
+      color: var(--text-faint);
+      font-size: 10px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .quote-plate p {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(28px, 3.2vw, 40px);
+      line-height: 1.02;
+      color: rgba(255,255,255,.94);
+      max-width: 12ch;
+    }
+
+    .sections { margin-top: 16px; display: grid; gap: 16px; }
+    .asym { display: grid; grid-template-columns: 1.04fr .96fr; gap: 16px; }
+    .split { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+
+    .card-large,.card-side,.card-small,.method,.board,.dossier-panel {
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease);
+    }
+    .card-large:hover,.card-side:hover,.card-small:hover,.method:hover,.board:hover,.dossier-panel:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.14);
+      box-shadow: 0 34px 110px rgba(0,0,0,.56);
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 11px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .card-large h2,.card-side h3,.card-small h3,.method h3,.board h3,.dossier-panel h3 {
+      margin: 0;
+      letter-spacing: -.05em;
+      line-height: .98;
+    }
+    .card-large h2 { font-size: clamp(32px, 4vw, 48px); max-width: 11ch; }
+    .card-side h3 { font-size: clamp(28px, 3vw, 36px); max-width: 12ch; }
+    .card-small h3, .board h3 { font-size: 24px; }
+    .method h3, .dossier-panel h3 { font-size: 20px; }
+
+    .card-large p,.card-side p,.card-small p,.method p,.board p,.dossier-panel p {
+      margin: 0;
+      color: var(--text-soft);
+      line-height: 1.58;
+      font-size: 14px;
+      max-width: 52ch;
+    }
+
+    .card-large {
+      min-height: 280px;
+      display: grid;
+      align-content: end;
+      gap: 12px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.014)),
+        radial-gradient(circle at 12% 20%, rgba(177,96,52,.24), transparent 18%),
+        linear-gradient(180deg, rgba(28,18,13,.94), rgba(8,9,11,1));
+    }
+    .card-side { min-height: 280px; display: grid; gap: 14px; align-content: space-between; }
+    .card-small { min-height: 230px; display: grid; align-content: end; gap: 10px; }
+    .method { min-height: 126px; display: grid; gap: 8px; align-content: center; }
+
+    .board {
+      min-height: 520px;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 18px;
+    }
+    .board-wrap {
+      position: relative;
+      min-height: 420px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,.06);
+      background:
+        radial-gradient(circle at 18% 22%, rgba(221,180,138,.07), transparent 20%),
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      overflow: hidden;
+    }
+    .board-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: .7;
+    }
+    .node {
+      position: absolute;
+      width: 180px;
+      min-height: 108px;
+      padding: 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.018));
+      box-shadow: 0 16px 40px rgba(0,0,0,.26);
+      cursor: pointer;
+      transition: transform .25s var(--ease), border-color .25s var(--ease), background .25s var(--ease);
+    }
+    .node:hover, .node.is-active {
+      transform: translateY(-3px) scale(1.02);
+      border-color: rgba(221,180,138,.26);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+    }
+    .node small {
+      display: block;
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 8px;
+    }
+    .node strong {
+      display: block;
+      font-size: 18px;
+      line-height: 1;
+      letter-spacing: -.04em;
+      margin-bottom: 8px;
+    }
+    .node span { display: block; color: var(--text-soft); font-size: 12px; line-height: 1.45; }
+
+    .n-energy { left: 36px; top: 42px; }
+    .n-route  { left: 250px; top: 32px; }
+    .n-trade  { left: 120px; top: 208px; }
+    .n-refine { left: 344px; top: 236px; }
+    .n-pay    { left: 34px; top: 336px; }
+
+    .pull-line {
+      position: absolute;
+      right: 18px;
+      top: 22px;
+      width: 84px;
+      height: 180px;
+      display: grid;
+      justify-items: center;
+      align-content: start;
+      gap: 10px;
+      user-select: none;
+    }
+    .thread {
+      width: 2px;
+      height: 110px;
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(221,180,138,.42), rgba(255,255,255,.08));
+      border-radius: 999px;
+      box-shadow: 0 0 14px rgba(221,180,138,.18);
+    }
+    .tag {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(221,180,138,.24);
+      background: radial-gradient(circle at 32% 28%, rgba(255,255,255,.24), rgba(221,180,138,.12));
+      box-shadow: 0 12px 30px rgba(0,0,0,.34);
+      cursor: grab;
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .tag:active { cursor: grabbing; }
+
+    .dossier-panel {
+      min-height: 420px;
+      display: grid;
+      align-content: start;
+      gap: 12px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.012));
+    }
+    .dossier-panel ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--text-soft);
+      display: grid;
+      gap: 8px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+    th, td {
+      text-align: left;
+      vertical-align: top;
+      padding: 16px 18px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    th {
+      color: var(--accent);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      background: rgba(255,255,255,.02);
+    }
+
+    @media (max-width: 980px) {
+      .hero, .asym, .split, .board { grid-template-columns: 1fr; }
+      .hero { min-height: auto; }
+      .hero-visual { min-height: 460px; }
+      .lens-wrap { right: 50%; transform: translate(50%, -50%); width: min(82vw, 460px); }
+      .quote-plate { left: 50%; transform: translateX(-50%); width: min(320px, 84vw); }
+      .board-wrap { min-height: 560px; }
+      .n-energy { left: 20px; top: 24px; }
+      .n-route  { left: 190px; top: 86px; }
+      .n-trade  { left: 20px; top: 188px; }
+      .n-refine { left: 190px; top: 292px; }
+      .n-pay    { left: 80px; top: 412px; }
+      .pull-line { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="fire-room"></div>
+  <div class="shell">
+    <section class="hero glass">
+      <div class="hero-copy">
+        <div>
+          <div class="badge">optica2 / dossier</div>
+          <h1>Кто богатеет на новом энергетическом шоке</h1>
+          <p class="hero-text">Война вокруг Ирана уже перестала быть только военной историей. Она стала машиной перераспределения денег: кто-то богатеет на дорогой энергии, дефиците маршрутов и панике, а кто-то беднеет через бензин, еду, валюту и бюджетный стресс.</p>
+        </div>
+        <div class="hero-meta">
+          <span class="chip">lNG вне удара</span>
+          <span class="chip">арбитраж</span>
+          <span class="chip">переработка</span>
+          <span class="chip">обходной маршрут</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="lens-wrap" id="lens-wrap">
+          <div class="noise-word" id="noise-word">шум</div>
+          <div class="focus-word" id="focus-word">механизм</div>
+          <div class="lens-halo"></div>
+          <div class="lens-rim"></div>
+          <div class="lens-core"></div>
+          <div class="lens-gloss"></div>
+          <div class="lens-sheen"></div>
+          <div class="lens-fire"></div>
+          <div class="lens-flame"></div>
+          <div class="lens-blue"></div>
+          <div class="lens-line"></div>
+        </div>
+        <div class="quote-plate">
+          <small>оптика досье</small>
+          <p>Снаружи — паника. Внутри — проводка выгоды.</p>
+        </div>
+      </div>
+    </section>
+
+    <main class="sections">
+      <section class="asym">
+        <article class="card-large glass">
+          <span class="eyebrow">главное досье</span>
+          <h2>Выигрывает не тот, у кого больше сырья</h2>
+          <p>Выигрывает тот, кто стоит ближе к узлу: к безопасному LNG, физической торговле, переработке и обходному маршруту. Энергетический шок перераспределяет не только цену, но и ренту.</p>
+          <div class="chips">
+            <span class="chip">venture global</span>
+            <span class="chip">vitol</span>
+            <span class="chip">dangote</span>
+          </div>
+        </article>
+
+        <article class="card-side glass">
+          <div>
+            <span class="eyebrow">рамка чтения</span>
+            <h3>Как здесь вообще делаются деньги</h3>
+          </div>
+          <p>Не “все нефтяники”. А поставщики вне зоны войны, трейдеры, которые умеют быстро перенаправлять потоки, переработчики с короткой цепочкой и инфраструктурные узлы на обходном пути.</p>
+          <div class="chips">
+            <span class="chip">поставка</span>
+            <span class="chip">маршрут</span>
+            <span class="chip">дефицит</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="split">
+        <article class="card-small glass">
+          <span class="eyebrow">кто уже в прямом плюсе</span>
+          <h3>Venture Global, Cheniere, NextDecade, Vitol, Dangote</h3>
+          <p>Безопасный LNG, физическая торговля, арбитраж и переработка уже получают премию за хаос маршрутов и выпадение ближневосточных объёмов.</p>
+        </article>
+
+        <article class="card-small glass">
+          <span class="eyebrow">кто в сильной позиции</span>
+          <h3>Chevron, Shell, Equinor, Aker BP, Var Energi</h3>
+          <p>Дорогая нефть и газ улучшают ценовую среду, но у части majors есть и прямой операционный риск, поэтому они не одинаково “чистые победители”.</p>
+        </article>
+
+        <article class="card-small glass">
+          <span class="eyebrow">кто платит</span>
+          <h3>Импортёры энергии, домохозяйства, малый бизнес</h3>
+          <p>Первый удар получают те, кто покупает топливо, а не продаёт его миру: бедные страны, слабые бюджеты, низкие доходы и тонкая маржа.</p>
+        </article>
+      </section>
+
+      <section class="board glass">
+        <div class="board-wrap">
+          <svg class="board-svg" viewBox="0 0 640 460" preserveAspectRatio="none" aria-hidden="true">
+            <line x1="126" y1="96" x2="340" y2="86" stroke="rgba(221,180,138,.34)" stroke-width="1.5" />
+            <line x1="126" y1="96" x2="210" y2="264" stroke="rgba(221,180,138,.24)" stroke-width="1.5" />
+            <line x1="340" y1="86" x2="430" y2="292" stroke="rgba(221,180,138,.28)" stroke-width="1.5" />
+            <line x1="210" y1="264" x2="430" y2="292" stroke="rgba(221,180,138,.22)" stroke-width="1.5" />
+            <line x1="210" y1="264" x2="124" y2="390" stroke="rgba(221,180,138,.20)" stroke-width="1.5" />
+            <line x1="430" y1="292" x2="124" y2="390" stroke="rgba(221,180,138,.16)" stroke-width="1.5" />
+          </svg>
+
+          <button class="node n-energy is-active" data-key="energy">
+            <small>узел 01</small>
+            <strong>Энергия</strong>
+            <span>дорогой нефтью и газом открывается новый floor price</span>
+          </button>
+
+          <button class="node n-route" data-key="route">
+            <small>узел 02</small>
+            <strong>Маршрут</strong>
+            <span>Ормуз, Баб-эль-Мандеб и обход вокруг Африки</span>
+          </button>
+
+          <button class="node n-trade" data-key="trade">
+            <small>узел 03</small>
+            <strong>Арбитраж</strong>
+            <span>Vitol и физические трейдеры зарабатывают на срочности и доступе</span>
+          </button>
+
+          <button class="node n-refine" data-key="refine">
+            <small>узел 04</small>
+            <strong>Переработка</strong>
+            <span>Dangote усиливает позиции как короткая и безопасная цепочка</span>
+          </button>
+
+          <button class="node n-pay" data-key="pay">
+            <small>узел 05</small>
+            <strong>Кто платит</strong>
+            <span>импортёры энергии, низкие доходы, малый бизнес</span>
+          </button>
+
+          <div class="pull-line" id="pull-line" title="Потяни за нить">
+            <div class="thread"></div>
+            <div class="tag" id="pull-tag">нить</div>
+          </div>
+        </div>
+
+        <aside class="dossier-panel glass" id="dossier-panel">
+          <span class="eyebrow">карта связей</span>
+          <h3 id="panel-title">Энергия</h3>
+          <p id="panel-text">Шок начинается с цены. Но деньги делает не сама дорогая нефть, а тот, кто может монетизировать новую цену без прямого удара по своим маршрутам и активам.</p>
+          <ul id="panel-list">
+            <li>Venture Global, Cheniere и NextDecade получают премию за “безопасный” LNG.</li>
+            <li>Chevron выигрывает от дорогой нефти без такого же масштаба прямого регионального удара.</li>
+            <li>Бедные импортёры энергии получают дорогой бензин, еду и бюджетный стресс.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="method glass">
+        <span class="eyebrow">таблица досье</span>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Игрок</th>
+                <th>Статус</th>
+                <th>На чём зарабатывает</th>
+                <th>Почему сейчас</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Venture Global / Cheniere / NextDecade</td>
+                <td>уже в плюсе</td>
+                <td>LNG вне зоны удара</td>
+                <td>рынок переоценивает безопасные объёмы после шока ближневосточных поставок</td>
+              </tr>
+              <tr>
+                <td>Vitol</td>
+                <td>уже в плюсе</td>
+                <td>арбитраж, срочные cargoes, премия за доступ</td>
+                <td>физический рынок растёт быстрее фьючерсов, маршруты ломаются, Азия втягивает баррели из других бассейнов</td>
+              </tr>
+              <tr>
+                <td>Dangote</td>
+                <td>уже в плюсе</td>
+                <td>переработка и короткая цепочка</td>
+                <td>дешёвый импорт ослабляется, локальный перерабатывающий узел усиливает экспорт</td>
+              </tr>
+              <tr>
+                <td>Tanger Med и обходные узлы</td>
+                <td>в плюсе как инфраструктура</td>
+                <td>обходной маршрут</td>
+                <td>часть перевозчиков уходит в обход вокруг Африки, растут перевалка и сервисы пути</td>
+              </tr>
+              <tr>
+                <td>Импортёры энергии / низкие доходы / малый бизнес</td>
+                <td>платят</td>
+                <td>бензин, еда, транспорт, кредит</td>
+                <td>шок доходит до кассы, валюты и тонкой маржи быстрее, чем до богатых стран с буфером</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const lensWrap = document.getElementById('lens-wrap');
+    const noiseWord = document.getElementById('noise-word');
+    const focusWord = document.getElementById('focus-word');
+    const lensPairs = [
+      ['шум', 'механизм'],
+      ['новость', 'выгода'],
+      ['паника', 'маршрут'],
+      ['цена', 'рента']
+    ];
+    let lensIndex = 0;
+
+    function cycleLens() {
+      lensIndex = (lensIndex + 1) % lensPairs.length;
+      noiseWord.textContent = lensPairs[lensIndex][0];
+      focusWord.textContent = lensPairs[lensIndex][1];
+      lensWrap.classList.add('is-active');
+      setTimeout(() => lensWrap.classList.remove('is-active'), 900);
+    }
+
+    lensWrap.addEventListener('click', cycleLens);
+
+    const panelTitle = document.getElementById('panel-title');
+    const panelText = document.getElementById('panel-text');
+    const panelList = document.getElementById('panel-list');
+    const nodes = document.querySelectorAll('.node');
+    const pullTag = document.getElementById('pull-tag');
+
+    const panelData = {
+      energy: {
+        title: 'Энергия',
+        text: 'Шок начинается с цены. Но деньги делает не сама дорогая нефть, а тот, кто может монетизировать новую цену без прямого удара по своим маршрутам и активам.',
+        items: [
+          'Venture Global, Cheniere и NextDecade получают премию за безопасный LNG.',
+          'Chevron выигрывает от дорогой нефти без такого же масштаба прямого удара.',
+          'Бедные импортёры энергии получают дорогой бензин, еду и бюджетный стресс.'
+        ]
+      },
+      route: {
+        title: 'Маршрут',
+        text: 'Ормуз и Баб-эль-Мандеб превращают войну в логистический налог. Дорожает не только баррель, а сам безопасный путь.',
+        items: [
+          'Tanger Med ждёт дополнительный трафик на обходном маршруте.',
+          'Путь вокруг Африки удлиняется на 10–14 дней.',
+          'Растут надбавки за контейнер, перевалку, бункеровку и сервис.'
+        ]
+      },
+      trade: {
+        title: 'Арбитраж',
+        text: 'Для трейдеров прибыль рождается не из цены как таковой, а из хаоса: срочности, дисбаланса сортов и доступа к cargoes, которых другим не достать.',
+        items: [
+          'Vitol хорошо расположен к волатильности и арбитражу между регионами.',
+          'Физические цены растут быстрее бумажных, и это усиливает премию за доступ.',
+          'Азия втягивает баррели из Европы, Африки и США.'
+        ]
+      },
+      refine: {
+        title: 'Переработка',
+        text: 'В кризис выигрывает не вся страна, а конкретный перерабатывающий узел. Dangote усиливает позиции именно как короткая и безопасная цепочка.',
+        items: [
+          'Подорожание ближневосточных поставок ослабляет дешёвый импорт.',
+          'Экспорт бензина и продуктов по Западной Африке расширяется.',
+          'Для населения это не означает автоматического удешевления топлива.'
+        ]
+      },
+      pay: {
+        title: 'Кто платит',
+        text: 'Шок идёт вниз по системе. Первыми платят те, кто покупает топливо, а не продаёт его миру: импортёры энергии, низкие доходы и бизнес с тонкой маржой.',
+        items: [
+          'Бедные и среднебедные страны получают давление на валюту и бюджет.',
+          'Домохозяйства с низкими доходами сильнее чувствуют бензин, еду и электричество.',
+          'Малый бизнес, перевозчики и фермеры получают рост себестоимости и неопределённости.'
+        ]
+      }
+    };
+
+    function setPanel(key) {
+      const data = panelData[key];
+      panelTitle.textContent = data.title;
+      panelText.textContent = data.text;
+      panelList.innerHTML = data.items.map(item => `<li>${item}</li>`).join('');
+      nodes.forEach(node => node.classList.toggle('is-active', node.dataset.key === key));
+    }
+
+    nodes.forEach(node => {
+      node.addEventListener('click', () => setPanel(node.dataset.key));
+    });
+
+    let startY = null;
+    function openNextPanel() {
+      const order = ['energy', 'route', 'trade', 'refine', 'pay'];
+      const active = document.querySelector('.node.is-active')?.dataset.key || 'energy';
+      const i = order.indexOf(active);
+      setPanel(order[(i + 1) % order.length]);
+    }
+
+    pullTag.addEventListener('pointerdown', (e) => { startY = e.clientY; pullTag.setPointerCapture(e.pointerId); });
+    pullTag.addEventListener('pointerup', (e) => {
+      if (startY !== null && e.clientY - startY > 24) openNextPanel();
+      startY = null;
+    });
+    pullTag.addEventListener('click', openNextPanel);
+  </script>
+</body>
+</html>
