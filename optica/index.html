@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Optica</title>
+  <meta name="description" content="Смещение оптики — архив досье и механизмов." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles/base.css" />
+  <link rel="stylesheet" href="./styles/layout.css" />
+</head>
+<body>
+  <div class="fire-room"></div>
+  <div class="shell">
+    <section class="hero glass" id="hero-root">
+      <div class="hero-copy">
+        <div>
+          <div class="badge">optica / archive</div>
+          <h1 id="hero-title">Картотека механизмов</h1>
+          <p class="hero-text" id="hero-text">Сайт загружается…</p>
+        </div>
+        <div class="hero-meta" id="hero-chips"></div>
+      </div>
+      <div class="hero-visual">
+        <a class="lens-wrap" id="hero-link" href="./dossier.html?slug=energy-shock" aria-label="Открыть главное досье">
+          <div class="lens-halo"></div>
+          <div class="lens-rim"></div>
+          <div class="lens-core"></div>
+          <div class="lens-gloss"></div>
+          <div class="lens-sheen"></div>
+          <div class="lens-fire"></div>
+          <div class="lens-flame"></div>
+          <div class="lens-blue"></div>
+          <div class="lens-line"></div>
+          <div class="lens-pulse"></div>
+        </a>
+        <div class="quote-plate">
+          <small>оптика архива</small>
+          <p id="hero-quote">Снаружи — шум. Внутри — механизм.</p>
+        </div>
+      </div>
+    </section>
+
+    <main class="sections">
+      <section class="asym">
+        <article class="card-large glass" id="featured-card"></article>
+        <article class="card-side glass" id="side-card"></article>
+      </section>
+      <section class="split" id="grid-cards"></section>
+    </main>
+  </div>
+
+  <script type="module" src="./scripts/render-index.js"></script>
+</body>
+</html>
